@@ -1,0 +1,67 @@
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class CarreraAritmetica {
+    public static void main(String[] args) {
+
+        double[] numerosAleatorios = { 1, 2, 3, 9, 6 };
+        double suma = 0;
+        Scanner consola = new Scanner(System.in);
+
+        System.out.print("Ingresa el dato de entrada: ");
+        double datoEntrada = Double.parseDouble(consola.nextLine());
+
+        System.out.print("Ingresa el mes de nacimiento: ");
+        int mesNacimiento = Integer.parseInt(consola.nextLine());
+
+        for (double numero : numerosAleatorios) {
+            suma += numero;
+        }
+        double promedio = suma / numerosAleatorios.length;
+        datoEntrada += promedio;
+        System.out.println("Etapa 1: " + datoEntrada);
+
+        datoEntrada += datoEntrada % 7;
+        System.out.println("Etapa 2: " + datoEntrada);
+
+        datoEntrada += datoEntrada * 0.12;
+        System.out.println("Etapa 3: " + datoEntrada);
+
+        ArrayList<Integer> valoresEnteros = new ArrayList<>();
+        String otroNumero = "si";
+        while (otroNumero.equalsIgnoreCase("si")) {
+            System.out.print("Ingresa un numero: ");
+            valoresEnteros.add(Integer.parseInt(consola.nextLine()));
+
+            System.out.print("¿Quiere otro numero? (si/no): ");
+            otroNumero = consola.nextLine();
+        }
+
+        suma = 0;
+        for (int valor : valoresEnteros) {
+            suma += valor;
+        }
+        datoEntrada += suma;
+        System.out.println("Etapa 4: " + datoEntrada);
+
+        System.out.print("Ingresa un divisor (1-9): ");
+        int divisor = Integer.parseInt(consola.nextLine());
+        datoEntrada = datoEntrada / divisor;
+        System.out.println("Etapa 5: " + datoEntrada);
+
+        consola.close();
+
+        DecimalFormat formatoEntero = new DecimalFormat("#");
+        String datoEntradaPar = formatoEntero.format(datoEntrada);
+
+        DecimalFormat formatoDecimal = new DecimalFormat("#.0000");
+        String datoEntradaNon = formatoDecimal.format(datoEntrada % 1);
+
+        if (mesNacimiento % 2 == 0) {
+            System.out.println(datoEntradaPar);
+        } else {
+            System.out.println(datoEntradaNon);
+        }
+    }
+}
