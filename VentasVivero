@@ -1,0 +1,60 @@
+import java.util.Scanner;
+
+public class VentasVivero {
+    public static void main(String[] args) {
+
+        Scanner teclado = new Scanner(System.in);
+
+        String[] productos = {"Cactus", "Suculenta", "Maceta", "Tierra", "Fertilizante"};
+        String[] dias = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"};
+
+        double[] costo = {45.5, 35.5, 60, 80, 95};
+
+        double[][] matrizVentas = new double[6][5];
+
+        int dia = 0;
+
+        while (dia < dias.length) {
+
+            System.out.println("\nDia: " + dias[dia]);
+
+            int producto = 0;
+
+            while (producto < productos.length) {
+
+                System.out.print("Cuantos " + productos[producto] + " se vendieron: ");
+                int cantidad = teclado.nextInt();
+
+                double resultado = cantidad * costo[producto];
+
+                matrizVentas[dia][producto] = resultado;
+
+                producto++;
+            }
+
+            dia++;
+        }
+
+        System.out.println("\n===== RESULTADOS DE LA SEMANA =====");
+
+        int fila = 0;
+
+        while (fila < 6) {
+
+            System.out.println("\n" + dias[fila]);
+
+            int columna = 0;
+
+            while (columna < 5) {
+
+                System.out.println(productos[columna] + ": $" + matrizVentas[fila][columna]);
+
+                columna++;
+            }
+
+            fila++;
+        }
+
+        teclado.close();
+    }
+}
